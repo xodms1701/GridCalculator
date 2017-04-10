@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int SELECT_EDIT2=1;
     int selectEdit=SELECT_EDIT1;
     String numStr="";
+    TextView textResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         edit2= (EditText)findViewById(R.id.edit_y);
         edit1.setOnTouchListener(editHandler);
         edit2.setOnTouchListener(editHandler);
-
+        textResult=(TextView)findViewById(R.id.text_result);
 
         for (int i = 0; i < butNums.length; i++) {
             butNums[i] = (Button) findViewById(R.id.but_0 + i);
@@ -53,7 +54,24 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener butOpHandler=new View.OnClickListener(){
         @Override
         public void onClick(View view){
-
+            int num1=Integer.parseInt(edit1.getText().toString());
+            int num2=Integer.parseInt(edit2.getText().toString());
+            double result=0;
+            switch (view.getId()){
+                case R.id.Ops1:
+                    result = num1+num2;
+                    break;
+                case R.id.Ops2:
+                    result = num1-num2;
+                    break;
+                case R.id.Ops3:
+                    result = num1*num2;
+                    break;
+                case R.id.Ops4:
+                    result = (double)num1/num2;
+                    break;
+            }
+            textResult.setText("계산결과 : "+result);
         }
     };
     View.OnTouchListener editHandler=new View.OnTouchListener(){
